@@ -89,7 +89,8 @@ describe 'trey support' do
           until:"#{req_params[:until]}T00:00:00-05:00",
         })) do |response|
         response.status.should == 200
-        JSON.parse(response.body)['params']['since'].should == '2012-01-01'
+        # Pacific time is more interesting
+        JSON.parse(response.body)['params']['since'].should == '2011-12-31'
       end
     end
 
