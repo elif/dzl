@@ -34,7 +34,11 @@ class Dzl::DSLSubjects::Parameter
           )
         end
       elsif param_type == Date || param_type == Time
-        input = Time.parse(input) rescue nil
+        if Time.zone
+          input = Time.zone.parse(input) rescue nil
+        else
+          input = Time.parse(input) rescue nil
+        end
         if input
           input = input.to_date if param_type == Date
           Dzl::ValueOrError.new(v: input)

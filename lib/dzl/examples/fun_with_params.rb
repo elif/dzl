@@ -1,6 +1,7 @@
 require 'dzl/examples/base'
 
 class Dzl::Examples::FunWithParams < Dzl::Examples::Base
+  Time.zone = "Eastern Time (US & Canada)"
   endpoint '/foo' do
     required :foo do
       type Array
