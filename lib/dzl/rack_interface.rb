@@ -15,12 +15,16 @@ module Dzl::RackInterface
       [__router.handle_request(request), nil]
     rescue Dzl::RespondWithHTTPBasicChallenge
       [respond_with_http_basic_challenge, nil]
+      raise
     rescue Dzl::RespondWithInvalidAPIKey
       [respond_with_invalid_api_key, nil]
+      raise
     rescue Dzl::Error => e
       [respond_with_dzl_error_handler(e), nil]
+      raise
     rescue StandardError => e
       [respond_with_standard_error_handler(e), e]
+      raise
     end
 
     if response[0] < 100
